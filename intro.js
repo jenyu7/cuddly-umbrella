@@ -26,10 +26,11 @@ newEl.addEventListener('click', fibButton);
 var list;
 var updateList = function(){
     list = document.getElementsByTagName("li");
-    console.log(list);
+    //console.log(list);
     for (var i = 0; i < list.length; i++){
 	list[i].addEventListener('mouseover', changeHead);
-	console.log(list[i]);
+	list[i].addEventListener('mouseout', changeBack);
+	//console.log(list[i]);
     }
 }
 
@@ -38,6 +39,11 @@ var changeHead = function(n){
     var head = document.getElementById("h");
     head.innerHTML = this.innerHTML;
 };
+
+var changeBack = function(){
+    var head = document.getElementById("h");
+    head.innerHTML = "Hello World!";
+}
 /*
 Write a JavaScript file that will do the following:
 Upon button push, add an element to the list.
