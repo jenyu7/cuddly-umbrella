@@ -1,5 +1,5 @@
 /*
- * 
+ * Jen Yu and Kadir Jawadul 
  */
 
 var fibonacci = function(n){
@@ -11,7 +11,7 @@ var fibonacci = function(n){
 var num = 1;
 
 var fibButton = function(){
-    console.log(fibonacci(num));
+    //console.log(fibonacci(num));
     var el = document.getElementById("thelist");
     item = document.createElement("li");
     item.innerHTML=fibonacci(num);
@@ -30,6 +30,7 @@ var updateList = function(){
     for (var i = 0; i < list.length; i++){
 	list[i].addEventListener('mouseover', changeHead);
 	list[i].addEventListener('mouseout', changeBack);
+	list[i].addEventListener('click', remove);
 	//console.log(list[i]);
     }
 }
@@ -44,10 +45,12 @@ var changeBack = function(){
     var head = document.getElementById("h");
     head.innerHTML = "Hello World!";
 }
+
+var remove = function(){
+    var list = document.getElementById("thelist");
+    list.removeChild(this);
+}
 /*
 Write a JavaScript file that will do the following:
-Upon button push, add an element to the list.
-When the mouse goes over an item in the list, change the heading at the top to contain the text of the item.
-When the mouse is no longer over an item in the list, change the heading back to "Hello World!".
 When an item on the list is clicked, remove it from the DOM.
 */
