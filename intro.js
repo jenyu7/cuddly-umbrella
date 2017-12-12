@@ -6,28 +6,47 @@
  * 2017-12-09 
  */
 
+var ind = 8;
+var nextItem = function(n){
+    var el = document.getElementById("frist");
+    item = document.createElement("li");
+    item.innerHTML="item " + ind;
+    el.appendChild(item);
+    updateList();
+    ind ++;
+}
+
+var newE = document.getElementById("newE");
+newE.addEventListener('click', nextItem);
+
+
 //Finds the nth term of the fibonacci sequence
 var fibonacci = function(n){
     if(n == 0){return 0;}
     else if (n == 1){return 1;}
-    else{return fibonacci(n-1) + fibonacci(n-2);}
+    else{
+	list = document.getElementsByClassName("fib");
+	return parseInt(list[n-2].innerHTML) + parseInt(list[n-1].innerHTML);
+    }
 };
 
-//refers to the button to add new elements to the list
-var newEl = document.getElementById("newEl");
-newEl.addEventListener('click', add);
 
-var num = 1;
+var num = 0;
 //Adds the next fibonacci number to the list when button clicked
 var add = function(){
     //console.log(fibonacci(num));
     var el = document.getElementById("thelist");
     item = document.createElement("li");
     item.innerHTML=fibonacci(num);
+    item.setAttribute("class", "fib");
     el.appendChild(item);
     num += 1;
-    updateList();
 };
+
+//refers to the button to add new elements to the list
+var newEl = document.getElementById("newEl");
+newEl.addEventListener('click', add);
+//console.log(add);
 
 //updates the list of items as add is called
 var list;
@@ -36,10 +55,12 @@ var updateList = function(){
     //console.log(list);
     //for each list item, add three event listeners
     for (var i = 0; i < list.length; i++){
-	list[i].addEventListener('mouseover', changeHead);
-	list[i].addEventListener('mouseout', changeBack);
-	list[i].addEventListener('click', remove);
-	//console.log(list[i]);
+	if(list[i].getAttribute("class") != "fib"){
+	    list[i].addEventListener('mouseover', changeHead);
+	    list[i].addEventListener('mouseout', changeBack);
+	    list[i].addEventListener('click', remove);
+	    //console.log(list[i]);
+	}
     }
 }
 
@@ -58,7 +79,7 @@ var changeBack = function(){
 
 //remove the list item when clicked
 var remove = function(){
-    var list = document.getElementById("thelist");
+    var list = document.getElementById("frist");
     list.removeChild(this);
 }
 
