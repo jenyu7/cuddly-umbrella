@@ -3,7 +3,7 @@
  * Jen Yu and Jawadul Kadir
  * Softdev pd7
  * K #16: Sequential Progression II: Electric Boogaloo
- * 2017-12-09 
+ * 2017-12-09
  */
 
 var ind = 8;
@@ -33,7 +33,7 @@ var fibonacci = function(n){
 
 var num = 0;
 //Adds the next fibonacci number to the list when button clicked
-var add = function(){
+var addFib = function(){
     //console.log(fibonacci(num));
     var el = document.getElementById("thelist");
     item = document.createElement("li");
@@ -44,9 +44,30 @@ var add = function(){
 };
 
 //refers to the button to add new elements to the list
-var newEl = document.getElementById("newEl");
-newEl.addEventListener('click', add);
-//console.log(add);
+var newFib = document.getElementById("newFib");
+newFib.addEventListener('click', addFib);
+//console.log(addFib);
+
+var mersenne = function(n){
+	return Math.pow(2, n) - 1;
+}
+
+var exp = 0;
+//Adds the next Mersenne number to the list when button clicked
+var addMersenne = function(){
+    //console.log(mersenne(num));
+    var el = document.getElementById("mersenne");
+    item = document.createElement("li");
+    item.innerHTML=mersenne(exp);
+    item.setAttribute("class", "mersenne");
+    el.appendChild(item);
+    exp += 1;
+};
+
+//refers to the button to add new elements to the list
+var newMersenne = document.getElementById("newMersenne");
+newMersenne.addEventListener('click', addMersenne);
+//console.log(addFib);
 
 //updates the list of items as add is called
 var list;
@@ -55,7 +76,7 @@ var updateList = function(){
     //console.log(list);
     //for each list item, add three event listeners
     for (var i = 0; i < list.length; i++){
-	if(list[i].getAttribute("class") != "fib"){
+	if(list[i].getAttribute("class") != "fib" && list[i].getAttribute("class") != "mersenne"){
 	    list[i].addEventListener('mouseover', changeHead);
 	    list[i].addEventListener('mouseout', changeBack);
 	    list[i].addEventListener('click', remove);
